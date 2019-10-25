@@ -1,0 +1,112 @@
+.navbar{
+	background-color : #F0F2F8
+}
+
+nav ul a{
+	color:#000
+}
+
+.btn, .btn-large, .navbtn-hover{
+	background-color: #f47216;
+	color:#fff;
+}
+
+.comment-count-label{
+	font-size: 13px; !important
+}
+
+.qstatsbox.lightborder{
+	padding: 5px 0px;
+}
+
+.userbox-body .smallText{
+	font-weight: 400;
+	font-size: 1.0em; !important
+}
+
+.questionbox .mediumText{
+	font-weight: 500;
+}
+
+img.responsive-img{
+	height: 100%;
+}
+
+.postbody.pvs{
+	  border: 1px solid #BFBFBF;
+      border-radius: 10px;
+      padding: 10px;
+      margin-bottom:20px;
+      margin-top:20px;
+}
+
+.row{
+	margin-bottom:0 !important;
+}
+
+i.toggle-drawer:hover{
+	color: #CC3700 !important;
+}
+
+.chip{
+	background-color:#F0F2F8;
+	color: #2F2F2F;
+}
+
+#post-title {
+	font-weight:500;
+}
+
+.upvote:hover{
+	color:#07AD6A !important;
+}
+
+.downvote:hover{
+	color:#CC3700 !important;
+}
+
+.replybox > .viewbox > .postbody.pvs{
+	border:0;
+	background-color: #FAF9FA;
+}
+
+.bookmark{
+	color:#f47216 !important;
+}
+
+i.fa.fa-check-square.fa-3x{
+	font-size:2.50em;
+}
+
+.light-green{
+	background-color:#07AD6A !important;
+}
+
+.report-problem{
+	color:#CC3700;
+}
+
+.canceledit{
+	background-color:#CC3700;
+}
+
+.stats-box-views{
+	background-color:#E3F3FF;
+}
+
+.save-button, .new-comment-btn{
+	background-color:#07AD6A !important;
+}
+
+.add-comment{
+	color:#07AD6A;
+}
+
+
+.editlink.btn{
+	background-color:#039be5;
+}
+
+.dark-text{
+	color: #2F2F2F !important;
+}

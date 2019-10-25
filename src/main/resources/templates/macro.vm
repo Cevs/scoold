@@ -330,7 +330,7 @@
 			#set($_href = "${_href}&link=$encodedLink")
 		#end
 		#if ($clazz.contains("notext")) #set($_showtxt = "" ) #else #set($_showtxt = " $!lang.get('report')") #end
-		<a href="#main-modal" title="Report a problem" data-fetch="$!{_href}" class="modal-trigger $!{clazz}">
+		<a href="#main-modal" title="Report a problem" data-fetch="$!{_href}" class="modal-trigger $!{clazz} report-problem">
 			#if(!$clazz.contains("noicon"))<i class="fa fa-flag"></i>#end $!_showtxt
 		</a>
 	#end
@@ -380,9 +380,13 @@
 			#end
 			<div class="col m2 l1 center-align hide-on-med-and-down">
 				<div class="qstatsbox">
-					<div class="largeText lightborder tooltipped $!{bgclass1}" data-tooltip="$!lang.get('votes')">$!utils.abbreviateInt($!votes, 0)</div>
-					<div class="mvs lightborder tooltipped $!{bgclass}" data-tooltip="$!lang.get('answers.title')">$utils.abbreviateInt($!answercount, 0)</div>
-					<div class="mvs lightborder tooltipped" data-tooltip="$!lang.get('posts.views')">$utils.abbreviateInt($!viewcount, 0)
+					<div class="largeText lightborder tooltipped $!{bgclass1}" data-tooltip="$!lang.get('votes')">$!utils.abbreviateInt($!votes, 0)
+						<small class="hide-on-med-and-down comment-count-label">$!lang.get('posts.comments')</small>
+					</div>
+					<div class="mvs lightborder tooltipped $!{bgclass}" data-tooltip="$!lang.get('answers.title')">$utils.abbreviateInt($!answercount, 0)
+						<small class="hide-on-med-and-down">$!lang.get('posts.answers')</small>
+					</div>
+					<div class="mvs lightborder tooltipped stats-box-views" data-tooltip="$!lang.get('posts.views')">$utils.abbreviateInt($!viewcount, 0)
 						<small class="hide-on-med-and-down">$!lang.get('posts.views')</small>
 					</div>
 				</div>
@@ -484,49 +488,15 @@
 <div id="$!showpost.id" class="postbox $!{showpost.type}box">
 	#if($showpost.isReply())<hr>#end
 	<div id="post-$!showpost.id" class="viewbox mbm">
-		<div class="postbody pvs">
+		<div class="postbody pvs question-body">
 			#set($_bodyHtml = $utils.markdownToHtml($!showpost.body))
 			$!{_bodyHtml}
 		</div>
 
 		<div class="row">
-			<div class="col s4 m4 l4">
-				<div class="left mtm mrl approve-answer-btn">
-					#set($approvedAnswer = $showpost.id.equals($parentpost.answerid))
-					#if ($approvedAnswer)	#set($onclass = "green-text text-lighten-1") #else #set($onclass = "") #end
-					#if ($authenticated && $showpost.isReply() && $parentpost.creatorid.equals($authUser.id))
-						<a href="$questionlink/$!parentpost.id/approve/$!showpost.id" class="approve-answer $!{onclass}"
-							 title="Approve answer"><i class="fa fa-check-circle fa-3x"></i></a>
-					#elseif ($approvedAnswer)
-						<span class="green-text"><i class="fa fa-check-circle fa-3x"></i></span>
-					#end
-				</div>
-				#votebox($showpost "hugeText mtm")
-			</div>
-			<div class="col s8 m3 l4">
-				<div class="ptl center-align">
-					<div>$!lang.get("posts.posted") #formatdate($showpost.timestamp "")</div>
-					#if($showpost.type == "unapprovedreply" || $showpost.type == "unapprovedquestion")
-					<div><small class="orange-text"><i class="fa fa-exclamation-circle"></i> $!lang.get('posts.unapproved')</small></div>
-					#end
-					#if ($showpost.lasteditby)
-					<a href="$revisionslink/$!showpost.id" title="Revision history">
-						$!lang.get("posts.edited") #formatdate($showpost.lastedited "")
-					</a>
-					#end
-				</div>
-			</div>
-			<div class="col s8 m5 l4">
-				<div class="pam">
-					#smallpersonbox($showpost.author)
-				</div>
-			</div>
-		</div>
-
-		<div class="row">
 			<div class="col s12">
-				<div class="lightborder pam post-actions">
-					<a href="#post-$!showpost.id" title="Permalink" class="right permalink"><i class="fa fa-bookmark"></i></a>
+				<div class="pam post-actions">
+					<a href="#post-$!showpost.id" title="Permalink" class="right permalink bookmark"><i class="fa fa-bookmark"></i></a>
 
 					#if ($scooldUtils.isMod($authUser) && ($showpost.type == "unapprovedreply" || $showpost.type == "unapprovedquestion"))
 						<a href="$!actionlink/$showpost.id/approve" title="Approve" class="post-refresh green-text prm"><i class="fa fa-check"></i> $!lang.get("posts.approve")</a>
@@ -541,7 +511,7 @@
 					#end
 
 					#if ($canComment && !$showpost.isFeedback())
-						<a href="#" title="Add a comment" class="next-div-toggle prm"><i class="fa fa-commenting"></i> $!lang.get("comments.write")</a>
+						<a href="#" title="Add a comment" class="next-div-toggle prm add-comment"><i class="fa fa-commenting"></i> $!lang.get("comments.write")</a>
 					#end
 
 					#if ($showpost.lasteditby)
@@ -563,6 +533,40 @@
 					#if ($canComment)
 						#newcommentform($showpost.id true "$questionlink/$showpost.id")
 					#end
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col s4 m4 l4">
+				<div class="left mtm mrl approve-answer-btn">
+					#set($approvedAnswer = $showpost.id.equals($parentpost.answerid))
+					#if ($approvedAnswer)	#set($onclass = "green-text text-lighten-1") #else #set($onclass = "") #end
+					#if ($authenticated && $showpost.isReply() && $parentpost.creatorid.equals($authUser.id))
+						<a href="$questionlink/$!parentpost.id/approve/$!showpost.id" class="approve-answer $!{onclass}"
+							 title="Approve answer"><i class="fa fa-check-square fa-3x"></i></a>
+					#elseif ($approvedAnswer)
+						<span class="green-text"><i class="fa fa-check-square fa-3x"></i></span>
+					#end
+				</div>
+				#votebox($showpost "hugeText mtm")
+			</div>
+			<div class="col s8 m3 l4">
+				<div class="ptl center-align">
+					<div>$!lang.get("posts.posted") #formatdate($showpost.timestamp "")</div>
+					#if($showpost.type == "unapprovedreply" || $showpost.type == "unapprovedquestion")
+					<div><small class="orange-text"><i class="fa fa-exclamation-circle"></i> $!lang.get('posts.unapproved')</small></div>
+					#end
+					#if ($showpost.lasteditby)
+					<a href="$revisionslink/$!showpost.id" title="Revision history">
+						$!lang.get("posts.edited") #formatdate($showpost.lastedited "")
+					</a>
+					#end
+				</div>
+			</div>
+			<div class="col s8 m5 l4">
+				<div class="pam">
+					#smallpersonbox($showpost.author)
 				</div>
 			</div>
 		</div>
@@ -602,7 +606,7 @@
 
 			<br>
 			<div class="mts mbl">
-				<button class="btn waves-effect waves-light" type="submit">
+				<button class="btn waves-effect waves-light save-button" type="submit">
 					<i class="fa fa-save left"></i> $!lang.get('save')
 				</button> &nbsp;
 				<button class="btn waves-effect waves-light canceledit">$!lang.get('close')</button>
@@ -664,7 +668,7 @@
 				#if ($isAdmin)
 					#if ($showtrans.approved)#set($onclass = "green-text")#else#set($onclass = "")#end
 					<a href="$translatelink/approve/$!{showtrans.id}" class="approve-translation $!{onclass}" title="Toogle approved status">
-						<i class="fa fa-check-circle"></i>#if ($showtrans.approved) Approved #else Approve #end
+						<i class="fa fa-check-square"></i>#if ($showtrans.approved) Approved #else Approve #end
 					</a>
 					&nbsp;
 				#end

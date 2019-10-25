@@ -15,7 +15,7 @@
 			<div class="col m3 s6">
 				<div class="mbl">
 					#if ($showpost.revisionid == $showrev.id)
-					<i class="fa fa-check-circle green-text fa-3x tooltipped" data-tooltip="$!lang.get('revisions.current')"></i>
+					<i class="fa fa-check-square green-text fa-3x tooltipped" data-tooltip="$!lang.get('revisions.current')"></i>
 					#elseif ($canrestore)
 					<form method="post" action="$!actionlink/$showrev.parentid/restore/$!showrev.id">
 						#sectoken(false)

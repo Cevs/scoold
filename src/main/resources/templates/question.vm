@@ -11,7 +11,7 @@
 			#end
 			#if ($showPost.answercount > 0)
 				#if ($showPost.answerid && !$showPost.answerid.isEmpty())
-					<i class="fa fa-check-circle tooltipped" data-tooltip="Approved answer"></i>
+					<i class="fa fa-check-square tooltipped" data-tooltip="Approved answer"></i>
 				#end
 				$!lang.get("posts.answered")
 			#else
@@ -36,7 +36,7 @@
 						<a href="$questionlink/$showPost.id/#stripstr($showPost.title)?sortby=newest" title="Newest answers"
 							 class="chip $sortarr.newest">$!lang.get("newest")</a>
 					</span>
-					<h4 class="grey-text">$!lang.get("answers.title") #showcount($itemcount.count)</h4>
+					<h4>$!lang.get("answers.title") #showcount($itemcount.count)</h4>
 				</div>
 
 				#paginate("\#answerspage(\$answerslist \$showPost)" $itemcount "" "page")

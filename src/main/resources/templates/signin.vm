@@ -11,7 +11,7 @@
 						<h1><i class="fa fa-envelope-open-o fa-2x green-text"></i></h1>
 						<p>$!lang.get('signin.verify.text')</p>
 					#elseif($verified)
-						<h1><i class="fa fa-check-circle fa-2x green-text"></i></h1>
+						<h1><i class="fa fa-check-square fa-2x green-text"></i></h1>
 						<p>$!lang.get('signin.verify.done')</p>
 						<a href="$signinlink" class="btn">$!lang.get("signin.title")</a>
 					#else
@@ -56,7 +56,7 @@
 					<h1><i class="fa fa-envelope-open-o fa-2x green-text"></i></h1>
 					<p>$!lang.get('signin.verify.text')</p>
 					#elseif($verified)
-					<h1><i class="fa fa-check-circle fa-2x green-text"></i></h1>
+					<h1><i class="fa fa-check-square fa-2x green-text"></i></h1>
 					<p>$!lang.get('done')</p>
 					<a href="$signinlink" class="btn">$!lang.get("signin.title")</a>
 					#else
@@ -93,7 +93,7 @@
 	<div class="row ptl">
 		<div class="col s12 m12 l10 offset-l1 center">
 			<div class="card-panel lighten-4">
-				<h2 class="grey-text text-darken-2 pbl">$!lang.get("signin.title")</h2>
+				<h2 class="dark-text pbl">$!lang.get("signin.title")</h2>
 
 				#if($ldapLoginEnabled || $passwordLoginEnabled)
 					#set($leftColSize = "col l5 m6 s12" )
@@ -139,16 +139,16 @@
 						#end
 
 						#if($ldapLoginEnabled)
-						<h4>LDAP</h4>
+						<!--<h4>LDAP</h4>-->
 						<div class="pal">
 							<form method="post" id="ldap-login-form">
 								#sectoken(false "SIGNIN_LDAP")
 								<div class="input-field mvm">
-									<label for="username">Username</label>
+									<label class="dark-text" for="username">Username</label>
 									<input id="username" type="text" value="" required>
 								</div>
 								<div class="input-field mvm">
-									<label for="password">$!lang.get('password')</label>
+									<label class="dark-text" for="password">$!lang.get('password')</label>
 									<input id="password" type="password" value="" required>
 								</div>
 								<input type="hidden" name="provider" value="ldap">
@@ -251,7 +251,8 @@
 
 					</div>
 				</div>
-				<small class="grey-text">$!lang.get('signup.form.termsofuse')</small>
+				<small class="grey-text">You have to sign in with your <strong>Jira credentials</strong>. Username must be without domain.</small><br>
+				<small class="grey-text">To request an account, please contact your System administrators.</small>
 			</div>
 		</div>
 	</div>

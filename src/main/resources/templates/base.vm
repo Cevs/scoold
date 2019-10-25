@@ -44,12 +44,13 @@
 		#if ($includeGMapsScripts && $includeGMapsScripts == true)
 		<script nonce="$cspNonce" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=$!GMAPS_API_KEY"></script>
 		#end
+		<link href="$!styleslink/mytheme.css" rel="stylesheet">
 	</head>
 	<body>
 		<div class="scoold-wrapper">
 			<header>
 				<div class="${navbarFixedClass}">
-					<nav class="light-blue">
+					<nav class="navbar">
 						<div class="nav-wrapper container">
 							<a href="#" data-target="mobile-drawer" class="sidenav-trigger"><i class="fa fa-bars fa-2x"></i></a>
 

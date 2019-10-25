@@ -92,10 +92,10 @@
 			#if ($isAdmin)
 				#if ($showUser.groups == "mods")#set($hidemakemod = "hide")#else#set($unhidemakemod = "hide")#end
 				<a href="$profilelink/$showUser.creatorid/?makemod=false" class="chip make-mod-btn $!{unhidemakemod}">
-					<i class="fa fa-chevron-down"></i> Unmake mod
+					<i class="fa fa-caret-down"></i> Unmake mod
 				</a>
 				<a href="$profilelink/$showUser.creatorid/?makemod=true" class="chip make-mod-btn $!{hidemakemod}">
-					<i class="fa fa-chevron-up"></i> Make mod
+					<i class="fa fa-caret-up"></i> Make mod
 				</a>
 				<a href="${adminlink}?delete=profile&id=$showUser.id" title="Delete user account" class="red chip white-text">
 					<i class="fa fa-close"></i> $!lang.get("delete")
@@ -203,7 +203,7 @@
 					</div>
 
 					<div class="center mtl">
-						<button type="submit" class="btn waves-effect waves-light">$!lang.get('save')</button>
+						<button type="submit" class="btn waves-effect waves-light save-button">$!lang.get('save')</button>
 						<button type="button" class="btn waves-effect waves-light canceledit ${hideview1}">$!{lang.get('close')}</button>
 						<a href="$profilelink/$showUser.creatorid" class="btn waves-effect waves-light ${hideedit1}">$!{lang.get('close')}</a>
 					</div>
