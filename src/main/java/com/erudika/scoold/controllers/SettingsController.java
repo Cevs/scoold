@@ -64,7 +64,7 @@ public class SettingsController {
 		model.addAttribute("path", "settings.vm");
 		model.addAttribute("title", utils.getLang(req).get("settings.title"));
 		model.addAttribute("newpostEmailsEnabled", utils.isSubscribedToNewPosts(req));
-		model.addAttribute("anonymityEnabled", utils.getAuthUser(req).getAnonymityEnabled());
+		//model.addAttribute("anonymityEnabled", utils.getAuthUser(req).getAnonymityEnabled());
 		model.addAttribute("includeGMapsScripts", utils.isNearMeFeatureEnabled());
 		return "base";
 	}
@@ -80,7 +80,6 @@ public class SettingsController {
 			if (!StringUtils.isBlank(latlng)) {
 				authUser.setLatlng(latlng);
 			}
-			setAnonymity(authUser, req.getParameter("anon"));
 			authUser.setReplyEmailsEnabled(Boolean.valueOf(replyEmailsOn));
 			authUser.setCommentEmailsEnabled(Boolean.valueOf(commentEmailsOn));
 			authUser.update();
@@ -136,24 +135,16 @@ public class SettingsController {
 		}
 	}
 
-	private void setAnonymity(Profile authUser, String anonParam) {
-		if ("true".equalsIgnoreCase(anonParam)) {
-			anonymizeProfile(authUser);
-		} else if (authUser.getAnonymityEnabled()) {
-			deanonymizeProfile(authUser);
-		}
-	}
-
 	private void anonymizeProfile(Profile authUser) {
 		authUser.setName("Anonymous");
 		authUser.setOriginalPicture(authUser.getPicture());
 		authUser.setPicture(utils.getGravatar(authUser.getId() + "@scooldemail.com"));
-		authUser.setAnonymityEnabled(true);
+		//authUser.setAnonymityEnabled(true);
 	}
 
 	private void deanonymizeProfile(Profile authUser) {
 		authUser.setName(authUser.getOriginalName());
 		authUser.setPicture(authUser.getOriginalPicture());
-		authUser.setAnonymityEnabled(false);
+		//authUser.setAnonymityEnabled(false);
 	}
 }

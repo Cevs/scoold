@@ -64,7 +64,6 @@ public class Profile extends Sysprop {
 	@Stored private Set<String> spaces;
 	@Stored private Boolean replyEmailsEnabled;
 	@Stored private Boolean commentEmailsEnabled;
-	@Stored private Boolean anonymityEnabled;
 	@Stored private Integer yearlyVotes;
 	@Stored private Integer quarterlyVotes;
 	@Stored private Integer monthlyVotes;
@@ -209,14 +208,6 @@ public class Profile extends Sysprop {
 
 	public void setCommentEmailsEnabled(Boolean commentEmailsEnabled) {
 		this.commentEmailsEnabled = commentEmailsEnabled;
-	}
-
-	public Boolean getAnonymityEnabled() {
-		return anonymityEnabled;
-	}
-
-	public void setAnonymityEnabled(Boolean anonymityEnabled) {
-		this.anonymityEnabled = anonymityEnabled;
 	}
 
 	public String getGroups() {
