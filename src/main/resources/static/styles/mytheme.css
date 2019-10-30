@@ -8,7 +8,11 @@ nav ul a{
 
 .btn, .btn-large, .navbtn-hover{
 	background-color: #f47216;
-	color:#fff;
+	color:#fff !important;
+}
+
+.sidenav-trigger{
+	color:#2F2F2F;
 }
 
 .comment-count-label{
@@ -21,7 +25,11 @@ nav ul a{
 
 .userbox-body .smallText{
 	font-weight: 400;
-	font-size: 1.0em; !important
+	font-size: 1.0em;
+}
+
+.commentbox.pll.smallText{
+	font-size: 1.0em;
 }
 
 .questionbox .mediumText{
@@ -82,12 +90,20 @@ i.fa.fa-check-square.fa-3x{
 	background-color:#07AD6A !important;
 }
 
+.red-text{
+	color:#CC3700 !important;
+}
+
 .report-problem{
 	color:#CC3700;
 }
 
-.canceledit{
+.btn.canceledit{
 	background-color:#CC3700;
+}
+
+.canceledit{
+	color:#CC3700;
 }
 
 .stats-box-views{
@@ -109,4 +125,8 @@ i.fa.fa-check-square.fa-3x{
 
 .dark-text{
 	color: #2F2F2F !important;
+}
+
+.dark{
+	background-color:#000;
 }

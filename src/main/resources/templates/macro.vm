@@ -380,8 +380,9 @@
 			#end
 			<div class="col m2 l1 center-align hide-on-med-and-down">
 				<div class="qstatsbox">
-					<div class="largeText lightborder tooltipped $!{bgclass1}" data-tooltip="$!lang.get('votes')">$!utils.abbreviateInt($!votes, 0)
-						<small class="hide-on-med-and-down comment-count-label">$!lang.get('posts.comments')</small>
+					<div class="largeText lightborder tooltipped $!{bgclass1}" data-tooltip="$!lang.get('votes')">
+						<p style="margin:10px 0px 0px 0px">$!utils.abbreviateInt($!votes, 0)</p>
+						<small class="hide-on-med-and-down comment-count-label">$!lang.get('posts.votes')</small>
 					</div>
 					<div class="mvs lightborder tooltipped $!{bgclass}" data-tooltip="$!lang.get('answers.title')">$utils.abbreviateInt($!answercount, 0)
 						<small class="hide-on-med-and-down">$!lang.get('posts.answers')</small>

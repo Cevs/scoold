@@ -326,8 +326,12 @@ $(function () {
 			$.get(this.href, function(data) {
 				if (data === true) {
 					if (up) {
+					    $(".downvote .mrs").removeClass("red-text");
+					    $(".upvote .mrs").addClass("green-text");
 						newvotes++;
 					} else {
+					    $(".downvote .mrs").addClass("red-text");
+					    $(".upvote .mrs").removeClass("green-text");
 						newvotes--;
 					}
 				}
